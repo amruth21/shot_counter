@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           fontFamily: 'Gotham',
         ),
-        home: const MyHomePage(title: 'Shot Counter Proto'));
+        home: const MyHomePage(title: 'wasted'));
   }
 }
 
@@ -126,28 +126,43 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, _colorR, _colorG, _colorB),
-      appBar: AppBar(backgroundColor: Colors.black, title: Text(widget.title), actions: [
-        IconButton(
-          icon: Image.asset('images/shot-glass.png', scale: 2.5),
+      appBar: AppBar(
+          backgroundColor: Colors.black,
+          title: Text(widget.title, style: TextStyle(color: Color.fromARGB(255, _colorR, _colorG, _colorB))),
+          actions: [
+            ElevatedButton.icon(
+              style: ElevatedButton.styleFrom(primary: Colors.black),
+              onPressed: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return const MySettingsPage(title: 'Settings');
+                }));
+              },
+              icon: Icon(Icons.settings, size: 24.0,),
+              label: Text('Settings'), // <-- Text
+            ),
+            /*
+        TextButton(
+          style: TextButton.styleFrom(
+            textStyle: const TextStyle(fontSize: 20),
+          ),
           onPressed: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return const MySettingsPage(title: 'Settings');
             }));
           },
-        )
-        /*
-          Container(
-                alignment: Alignment.topRight,
-                child: GestureDetector(
-                  onTap: () { Navigator.push(context, 
-                          MaterialPageRoute(builder: (context) {
-                            return const MySettingsPage(title: 'SecondPage');
-                          })
-                        );
-                        },
-                  child: Image.asset('images/setting.png', scale: 2.5),
-                )),*/
-      ]),
+          child: const Text('Settings'),
+        ),*/
+            /*
+        Builder(builder: (context) => IconButton(
+          iconSize: 512,
+          icon: Image.asset('images/image-2.jpg', scale: 2.5),
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return const MySettingsPage(title: 'Settings');
+            }));
+          },
+        ))*/
+          ]),
       body: Center(
         child: Stack(
           children: <Widget>[
@@ -162,16 +177,6 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text(
                   '$_counter',
                   style: Theme.of(context).textTheme.headlineMedium,
-                )),
-            Container(
-                alignment: Alignment.topRight,
-                child: GestureDetector(
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) {
-                      return const MySettingsPage(title: 'SecondPage');
-                    }));
-                  },
-                  child: Image.asset('images/shot-glass.png', scale: 2.5),
                 )),
           ],
         ),
