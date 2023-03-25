@@ -4,6 +4,7 @@ import 'package:material_dialogs/widgets/buttons/icon_button.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
 import 'dart:ui';
 import 'settings.dart';
+import 'package:gender_picker/source/enums.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Shot Counter',
+        title: 'wasted',
         theme: ThemeData(
           fontFamily: 'Gotham',
         ),
@@ -43,7 +44,11 @@ class _MyHomePageState extends State<MyHomePage> {
 
   double _first_time = 0.0;
   double _curr_time = 0.0;
-  double BAC = 0.0;
+  double _BAC = 0.0;
+
+  int age = 18;
+  Gender gender = Gender.Male;
+  int weight = 130;
 
   void _incrementColor() {
     setState(() {
@@ -67,7 +72,50 @@ class _MyHomePageState extends State<MyHomePage> {
     }
   }
 
-  void _calcBAC() {}
+  void _calcBAC() {
+    /*
+
+
+    "use strict";
+    var gender = document.getElementById("gender").value;
+    var genderConst;
+    if (gender === "female") {
+        genderConst = 0.55;
+    } else if (gender === "male") {
+        genderConst = 0.68;
+    } else {
+        genderConst = 0.62;
+    }
+    
+    var weight = document.getElementById("weight").value * 454;
+    var gramsOfAlcohol = document.getElementById("drink_count").value * 14;
+    var bac = (gramsOfAlcohol / (weight * genderConst)) * 100;
+    bac = bac - (document.getElementById("time_elapsed").value * 0.015);
+    alert("Your BAC is: " + bac);
+
+
+    */
+    double genderConst;
+    double hours = _curr_time - _first_time;
+
+    if (gender == Gender.Male) {
+      genderConst = 0.68;
+    } else if (gender == Gender.Female) {
+      genderConst = 0.55;
+    } else {
+      genderConst = 0.62;
+    }
+    print("Constant: ${genderConst}");
+    print("weight: ${weight}");
+    print("shots ${_counter}");
+    print("hours: ${hours}");
+
+    int gramsWeight = 454 * weight;
+    int gramsOfAlcohol = _counter * 14;
+    double bac = (gramsOfAlcohol / (gramsWeight * genderConst)) * 100;
+    bac = bac - (hours * 0.015);
+    _BAC = double.parse(bac.toStringAsFixed(2));
+  }
 
   void _incrementCounter() {
     setState(() {
@@ -84,9 +132,7 @@ class _MyHomePageState extends State<MyHomePage> {
         _curr_time = hour + mins / 60;
       }
 
-      if (_counter > 10) {
-        // change to BAC
-        print("we in");
+      if (_BAC > .30 || _counter > 14) {
         Dialogs.materialDialog(
             msg: 'Your BAC level is too high!',
             title: "WARNING",
@@ -105,8 +151,6 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ]);
       }
-
-      // need to call setState to rebuild the widget
     });
   }
 
@@ -123,6 +167,8 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     // runs every time setState called
+    print('First Time: $_first_time');
+    print('Curr Time: $_curr_time');
 
     return Scaffold(
       backgroundColor: Color.fromARGB(255, _colorR, _colorG, _colorB),
@@ -133,54 +179,61 @@ class _MyHomePageState extends State<MyHomePage> {
             ElevatedButton.icon(
               style: ElevatedButton.styleFrom(primary: Colors.black),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return const MySettingsPage(title: 'Settings');
-                }));
+                _navigateSettings(context);
               },
-              icon: Icon(Icons.settings, size: 24.0,),
+              icon: Icon(
+                Icons.settings,
+                size: 24.0,
+              ),
               label: Text('Settings'), // <-- Text
             ),
-            /*
-        TextButton(
-          style: TextButton.styleFrom(
-            textStyle: const TextStyle(fontSize: 20),
-          ),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const MySettingsPage(title: 'Settings');
-            }));
-          },
-          child: const Text('Settings'),
-        ),*/
-            /*
-        Builder(builder: (context) => IconButton(
-          iconSize: 512,
-          icon: Image.asset('images/image-2.jpg', scale: 2.5),
-          onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return const MySettingsPage(title: 'Settings');
-            }));
-          },
-        ))*/
           ]),
       body: Center(
-        child: Stack(
-          children: <Widget>[
-            Container(
+        child: Column(children: <Widget>[
+          Stack(
+            children: <Widget>[
+              Container(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 64))),
+              Container(
                 alignment: Alignment.center,
-                child: GestureDetector(
-                  onTap: _increment,
-                  child: Image.asset('images/shot-glass.png', scale: 2.5),
-                )),
-            Container(
-                alignment: Alignment.center,
-                child: Text(
-                  '$_counter',
-                  style: Theme.of(context).textTheme.headlineMedium,
-                )),
-          ],
-        ),
+                child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 64),
+                    child: GestureDetector(
+                      onTap: _increment,
+                      child: Image.asset('images/shot-glass.png', scale: 2.5),
+                    )),
+              ),
+              Positioned(
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                child: Container(
+                  alignment: Alignment.center,
+                  child: Text(
+                    '$_counter',
+                    style: Theme.of(context).textTheme.headlineMedium,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Container(child: Padding(padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 32))),
+          Container(
+            alignment: Alignment.center,
+            child: Text(
+              'BAC: $_BAC',
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ),
+        ]),
       ),
     );
+  }
+
+  Future<void> _navigateSettings(BuildContext context) async {
+    final result = await Navigator.push(context, MaterialPageRoute(builder: (context) => const MySettingsPage(title: 'Settings')));
+    weight = result['weight'];
+    age = result['age'];
+    gender = result['gender'];
   }
 }

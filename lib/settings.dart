@@ -27,7 +27,7 @@ class _MySettingsPageState extends State<MySettingsPage> {
     super.dispose();
   }
 
-  int _age = 18;
+  static int _age = 18;
   Gender _gender = Gender.Male;
   int _weight = 50;
 
@@ -73,6 +73,7 @@ class _MySettingsPageState extends State<MySettingsPage> {
         backgroundColor: Color.fromARGB(255, 55, 100, 191),
         appBar: AppBar(
           backgroundColor: Colors.black,
+          automaticallyImplyLeading: false,
           // Here we take the value from the MyHomePage object that was created by
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.title),
@@ -112,6 +113,7 @@ class _MySettingsPageState extends State<MySettingsPage> {
                         child: TextFormField(
                             controller: myController,
                             keyboardType: TextInputType.number,
+                            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly],
                             onChanged: (text) {
                               setState(() {
                                 var value = int.tryParse(text);
@@ -132,99 +134,25 @@ class _MySettingsPageState extends State<MySettingsPage> {
                           child: Padding(
                               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
                               child: Text('GENDER', style: TextStyle(fontFamily: "Gotham")))),
-                      /*
-                      GenderPickerWithImage(
-                        showOtherGender: false,
-                        verticalAlignedText: false,
-                        selectedGender: Gender.Male,
-                        selectedGenderTextStyle: TextStyle(color: Color(0xFF8b32a8), fontWeight: FontWeight.bold),
-                        unSelectedGenderTextStyle: TextStyle(color: Colors.white, fontWeight: FontWeight.normal),
-                        onChanged: (Gender? gen) {
-                          setState(() {
-                            _gender = gen.toString();
-                          });
-                        },
-                        equallyAligned: true,
-                        animationDuration: Duration(milliseconds: 300),
-                        isCircular: true,
-                        // default : true,
-                        opacityOfGradient: 0.4,
-                        padding: const EdgeInsets.all(3),
-                        size: 50, //default : 40
-                      ),
-                      */
+                      Center(
+                          child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 16),
+                        child: TextButton(
+                          style: ButtonStyle(
+                            backgroundColor:  MaterialStateProperty.all<Color>(Color.fromARGB(255, 55, 100, 191)),
+                            foregroundColor: MaterialStateProperty.all<Color>(Colors.white),
+                          ),
+                          onPressed: () {
+                            Navigator.of(context).pop({"age": _age, "gender": _gender, "weight": _weight});
+                          },
+                          child: const Text('Return'),
+                        ),
+                      ))
                     ],
                   ),
                 ),
               ],
             ),
-
-            /*Center(
-          
-          child: Stack(children: <Widget>[
-          Container(
-            alignment: Alignment.center,
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text('AGE'))),
-          Container(
-              alignment: Alignment.center,
-              child: Slider(
-                value: _age.toDouble(),
-                min: 18,
-                max: 70,
-                divisions: 52,
-                label: _age.round().toString(),
-                onChanged: (double value) {
-                  setState(() {
-                    _age = value.toInt();
-                  });
-                },
-              )),
-              
-        ]))
-*/
-            /*
-
-Container(
-
-              alignment: Alignment.center,
-              child: SizedBox(
-    width: 200,
-    height: 50,
-  child: TextField(
-                  decoration: new InputDecoration(labelText: "Enter your number"),
-                  keyboardType: TextInputType.number,
-                  inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly]))),
-
-
-
-
-
-
-
-
-
-      body: SafeArea(
-          child: ListView(padding: EdgeInsets.all(24), children: <Widget>[
-        Text('AGE'),
-        Slider(
-          value: _age.toDouble(),
-          min: 18,
-          max: 70,
-          divisions: 52,
-          label: _age.round().toString(),
-          onChanged: (double value) {
-            setState(() {
-              _age = value.toInt();
-            });
-          },
-        ),
-        TextField(
-            decoration: new InputDecoration(labelText: "Enter your number"),
-            keyboardType: TextInputType.number,
-            inputFormatters: <TextInputFormatter>[FilteringTextInputFormatter.digitsOnly])
-      ])),*/
           )
         ])));
   }
