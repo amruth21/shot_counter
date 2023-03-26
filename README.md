@@ -21,10 +21,22 @@ Oftentimes students get caught up in the moment and dont accurately track the am
 The application intially queries users for different characteristics such as age, gender, and weight in order to calibrate the BAC calculations. Upon reaching harmful BAC levels the application will alert the user as well as contact their emergency contact which they can configure in settings. The application will send the contact a message alerting them of the users high BAC levels and a location pin in emergency cases.
 
 Since users of the application will be intoxicated **shots** also darkens the background color of the application proportional to the users BAC in order to serve as a visual indicator. This visual can alert friends nearby of how much the user has drank and serve as an early alarm system.
+<center>
+<div style="float:left;">
+<img src="images/home-page.png" height="512">
+</div>
 
-![Alt text](images/home-page.png?raw=true "Home Screen")
+<div>
+<img src="images/settings-page.png" height="512">
+<break>
 
-![Alt text](images/settings-page.png?raw=true "Settings Screen")
+
+
+
+</break>
+</div>
+</center>
+
 
 
 ## Getting Started
