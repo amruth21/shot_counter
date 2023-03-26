@@ -26,7 +26,7 @@ Since users of the application will be intoxicated **shots** also darkens the ba
 <img src="images/home-page.png" height="512">
 </div>
 
-<div>
+<div style="float:left;">
 <img src="images/settings-page.png" height="512">
 <break>
 
