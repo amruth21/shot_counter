@@ -110,6 +110,8 @@ class _MyHomePageState extends State<MyHomePage> {
         _curr_time = hour + mins / 60;
       }
 
+      _calcBAC();
+
       if (_BAC > .30 || _counter > 14) {
         Dialogs.materialDialog(
             msg: 'Your BAC level is too high!',
