@@ -46,9 +46,9 @@ class _MyHomePageState extends State<MyHomePage> {
   double _curr_time = 0.0;
   double _BAC = 0.0;
 
-  int age = 18;
+  int age = 21;
   Gender gender = Gender.Male;
-  int weight = 130;
+  int weight = 180;
 
   void _incrementColor() {
     setState(() {

@@ -8,12 +8,23 @@ The application can be served/downloaded on Android, iOS, Mac, and Chrome based 
 
 ## Motivation
 
-Just at the University of Maryland's campus alone 3/4 students engage in regular drinking, as a result of this rather than promoting abstinence(which isnt shown to work) providing resources to make their drinking experiences safer is vital. Oftentimes college students get caught up in the moment and dont accurately track the amounts of drinks they have had. Circumstances like this can lead to student's experiencing the [snowball effect](https://en.wikipedia.org/wiki/Snowball_effect) and get caught up in the moment. **shots** is designed to prevent this snowball effect and keep students safe!
 
-## Description
-**shots** contains a variety of different features which are meant to maximize the users safety to prevent alcohol poisoning and other harmful side effects of drinking. This app is meant to be a seamless solution to the countless health concerns that result from college drinking activities. The primary functionality of the app is to count the users drink intake and maintain a timer between drinks to caution the user as well as calculate their [Blood Alcohol Content](https://vaden.stanford.edu/super/learn/alcohol-drug-info/reduce-your-risk/what-blood-alcohol-concentration-bac). The application intially queries users for different characteristics such as age, gender, and weight in order to calibrate the BAC calculations. Upon reaching harmful BAC levels the application will alert the user as well as contact their emergency contact which they can configure in settings. The application will send the contact a message alerting them of the users high BAC levels and a location pin in emergency cases.
+At the University of Maryland, in spite of the countless drinking prevention campaigns, 3/4 of students regularly consume alcohol. Rather than continuing this ineffective campaigns it is vital that the university provides resources to make these inevitable drinking experiences safer. 
+
+Oftentimes students get caught up in the moment and dont accurately track the amounts of drinks they have had. Circumstances like this can lead to student's experiencing the [snowball effect](https://en.wikipedia.org/wiki/Snowball_effect) and get carried away with how much they are drinking. This snowball effect can lead to students reaching dangerous BAC levels that pose serious health risks. **shots** is designed to prevent this snowball effect and keep students safe!
 
 ![Alt text](images/bac-graph.jpg?raw=true "BAC")
+
+## Description
+**shots** contains a variety of different features which are meant to maximize the users safety to prevent alcohol poisoning and other harmful side effects of drinking. The app is a seamless solution to many of these health concerns and aims to be a proactive solution rather than a reactive. The app's primary functionality is to count the users drink intake and maintain a timer between drinks to caution the user. Alongside this the application calculates their [Blood Alcohol Content](https://vaden.stanford.edu/super/learn/alcohol-drug-info/reduce-your-risk/what-blood-alcohol-concentration-bac) based on the [Widmark Formula](https://www.denisekirbylaw.com/dwi-faqs/who-is-widmark-and-what-is-his-equation/) and displays it on the home screen. 
+
+The application intially queries users for different characteristics such as age, gender, and weight in order to calibrate the BAC calculations. Upon reaching harmful BAC levels the application will alert the user as well as contact their emergency contact which they can configure in settings. The application will send the contact a message alerting them of the users high BAC levels and a location pin in emergency cases.
+
+Since users of the application will be intoxicated **shots** also darkens the background color of the application proportional to the users BAC in order to serve as a visual indicator. This visual can alert friends nearby of how much the user has drank and serve as an early alarm system.
+
+![Alt text](images/home-page.png?raw=true "Home Screen")
+
+![Alt text](images/settings-page.png?raw=true "Settings Screen")
 
 
 ## Getting Started
